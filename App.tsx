@@ -1,34 +1,21 @@
-import { Button, Modal, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import StaticBanner from './components/StaticBanner'
+import UserBadge from './components/UserBadge'
 
 export default function App() {
-
-  const[visible, setVisible] = useState(false);
+  const users=[
+    {name:"SAMXAL", avatar:"samxal.com"},
+    {name:"Elya", avatar:"elya.com"}
+  ]
 
   return (
-    <View style={styles.container}> 
-
-    <Button
-   title='Modal AC'
-   onPress={()=>setVisible(true)} 
-    />
-    <Modal
-    transparent
-    animationType='fade'
-    visible={visible}
-    // onRequestClose={()=>setVisible(false)}
-    >
-
-      <View style={styles.backDrop}>
-
-       <Button
-   title='Modal Bagla'
-   onPress={()=>setVisible(false)} 
-    />
-
-      </View>
-
-    </Modal>
+    <View style={styles.container}>
+      <Text>App</Text>
+      {users.map((u,index)=>(
+      <UserBadge avatar={u.avatar} name={u.name} key={index}/>
+      ))}
+      <StaticBanner/>
     </View>
   )
 }
@@ -38,11 +25,5 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent: "center",
     alignItems:"center"
-  },
-  backDrop:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#f90847'
   }
 })
